@@ -21,7 +21,7 @@ namespace Freakylay.Data {
         public SongAuthor: DataKey<string>;
         public Mapper: DataKey<string>;
         public BSRKey: DataKey<string>;
-        public coverImage: DataKey<string>;
+        public CoverImage: DataKey<string>;
         public Length: DataKey<number>;
         public TimeScale: DataKey<number>;
         public MapType: DataKey<string>;
@@ -54,7 +54,7 @@ namespace Freakylay.Data {
             this.SongAuthor = new DataKey('SongAuthor', '');
             this.Mapper = new DataKey('Mapper', '');
             this.BSRKey = new DataKey('BSRKey', 'BSRKey');
-            this.coverImage = new DataKey('coverImage', 'img/BS_Logo.jpg');
+            this.CoverImage = new DataKey('CoverImage', 'img/BS_Logo.jpg');
             this.Length = new DataKey('Length', 60);
             this.TimeScale = new DataKey('TimeScale', 0);
             this.MapType = new DataKey('MapType', 'Standard');
@@ -88,7 +88,7 @@ namespace Freakylay.Data {
             this.SongAuthor.update(data);
             this.Mapper.update(data);
             this.BSRKey.update(data);
-            this.coverImage.update(data);
+            this.CoverImage.update(data);
             this.Length.update(data);
             this.TimeScale.update(data);
             this.MapType.update(data);

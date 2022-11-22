@@ -509,7 +509,7 @@ namespace Freakylay {
             this.mapData.SongAuthor.setValue('SongAuthor');
             this.mapData.Mapper.setValue('Mapper');
             this.mapData.BSRKey.setValue('d00c');
-            this.mapData.coverImage.setValue('img/BS_Logo.jpg');
+            this.mapData.CoverImage.setValue('img/BS_Logo.jpg');
             this.mapData.Length.setValue(336);
             this.mapData.TimeScale.setValue(0);
             this.mapData.MapType.setValue('Standard');
@@ -754,7 +754,7 @@ namespace Freakylay {
             this.marquee.songArtist.setValue(this.mapData.getSongAuthorLine());
             this.marquee.difficulty.setValue(this.mapData.getFullDifficultyLabel(this.urlOptions.hideDefaultDifficulty.getValue()));
 
-            this.songInfo.cover.style.backgroundImage = 'url(\'' + this.mapData.coverImage.getValue() + '\')';
+            this.songInfo.cover.style.backgroundImage = 'url(\'' + this.mapData.CoverImage.getValue() + '\')';
 
             this.data.bpm.innerHTML = '<span>BPM</span>' + this.mapData.BPM.getValue();
             this.data.njs.innerHTML = '<span>NJS</span>' + this.mapData.NJS.getValue().toFixed(1);
