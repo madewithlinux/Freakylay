@@ -5,7 +5,6 @@
     "sourceMap": true,
     "removeComments": true,
     "outFile": "Freakylay.js",
-    "sourceRoot": "./",
     "typeRoots": [
     ],
     "lib": [

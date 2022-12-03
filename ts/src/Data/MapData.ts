@@ -1,12 +1,22 @@
 /// <reference path="../Internal/DataKey.ts" />
 /// <reference path="../Internal/Helper.ts" />
+/// <reference path="../Connector/DataConverter.ts" />
 
 namespace Freakylay.Data {
 
     import DataKey = Freakylay.Internal.DataKey;
     import Helper = Freakylay.Internal.Helper;
 
+    import DataConverter = Freakylay.Connector.DataConverter;
+    import CMapData = Freakylay.Connector.CMapData;
+
+    function mapDataKey<Key extends keyof CMapData>(key: Key, defaultValue: CMapData[Key]) {
+        return new DataKey(key, defaultValue);
+    }
+
     export class MapData {
+
+        private dataConverter: DataConverter = new DataConverter();
 
         public GameVersion: DataKey<string>;
         public PluginVersion: DataKey<string>;
@@ -41,40 +51,43 @@ namespace Freakylay.Data {
         public PracticeModeModifiers: PracticeModeModifiers;
 
         constructor() {
-            this.GameVersion = new DataKey('GameVersion', '1.13.2');
-            this.PluginVersion = new DataKey('PluginVersion', '2.0.0.0');
-            this.InLevel = new DataKey('InLevel', false);
-            this.LevelPaused = new DataKey('LevelPaused', false);
-            this.LevelFinished = new DataKey('LevelFinished', false);
-            this.LevelFailed = new DataKey('LevelFailed', false);
-            this.LevelQuit = new DataKey('LevelQuit', false);
-            this.Hash = new DataKey('Hash', '');
-            this.SongName = new DataKey('SongName', '');
-            this.SongSubName = new DataKey('SongSubName', '');
-            this.SongAuthor = new DataKey('SongAuthor', '');
-            this.Mapper = new DataKey('Mapper', '');
-            this.BSRKey = new DataKey('BSRKey', 'BSRKey');
-            this.CoverImage = new DataKey('CoverImage', 'img/BS_Logo.jpg');
-            this.Length = new DataKey('Length', 60);
+            this.GameVersion = mapDataKey('GameVersion', '1.13.2');
+            this.PluginVersion = mapDataKey('PluginVersion', '2.0.0.0');
+            this.InLevel = mapDataKey('InLevel', false);
+            this.LevelPaused = mapDataKey('LevelPaused', false);
+            this.LevelFinished = mapDataKey('LevelFinished', false);
+            this.LevelFailed = mapDataKey('LevelFailed', false);
+            this.LevelQuit = mapDataKey('LevelQuit', false);
+            this.Hash = mapDataKey('Hash', '');
+            this.SongName = mapDataKey('SongName', '');
+            this.SongSubName = mapDataKey('SongSubName', '');
+            this.SongAuthor = mapDataKey('SongAuthor', '');
+            this.Mapper = mapDataKey('Mapper', '');
+            this.BSRKey = mapDataKey('BSRKey', 'BSRKey');
+            this.CoverImage = mapDataKey('CoverImage', 'img/BS_Logo.jpg');
+            this.Length = mapDataKey('Duration', 60);
             this.TimeScale = new DataKey('TimeScale', 0);
-            this.MapType = new DataKey('MapType', 'Standard');
-            this.Difficulty = new DataKey('Difficulty', 'ExpertPlus');
-            this.CustomDifficultyLabel = new DataKey('CustomDifficultyLabel', '');
-            this.BPM = new DataKey('BPM', 0);
-            this.NJS = new DataKey('NJS', 0);
-            this.ModifiersMultiplier = new DataKey('ModifiersMultiplier', 1);
-            this.PracticeMode = new DataKey('PracticeMode', false);
-            this.PP = new DataKey('PP', 0);
-            this.Star = new DataKey('Star', 0);
-            this.IsMultiplayer = new DataKey('IsMultiplayer', false);
-            this.PreviousRecord = new DataKey('PreviousRecord', 0);
-            this.PreviousBSR = new DataKey('PreviousBSR', '');
+            this.MapType = mapDataKey('MapType', 'Standard');
+            this.Difficulty = mapDataKey('Difficulty', 'ExpertPlus');
+            this.CustomDifficultyLabel = mapDataKey('CustomDifficultyLabel', '');
+            this.BPM = mapDataKey('BPM', 0);
+            this.NJS = mapDataKey('NJS', 0);
+            this.ModifiersMultiplier = mapDataKey('ModifiersMultiplier', 1);
+            this.PracticeMode = mapDataKey('PracticeMode', false);
+            this.PP = mapDataKey('PP', 0);
+            this.Star = mapDataKey('Star', 0);
+            this.IsMultiplayer = mapDataKey('IsMultiplayer', false);
+            this.PreviousRecord = mapDataKey('PreviousRecord', 0);
+            this.PreviousBSR = mapDataKey('PreviousBSR', '');
 
             this.Modifiers = new Modifiers();
             this.PracticeModeModifiers = new PracticeModeModifiers();
         }
 
         public update(data: {}): void {
+            if (data && Object.keys(data).length > 0) {
+                data = this.dataConverter.convertMapData(data);
+            }
             this.GameVersion.update(data);
             this.PluginVersion.update(data);
             this.InLevel.update(data);
