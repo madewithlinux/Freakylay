@@ -14,6 +14,11 @@
   },
   "scripts": {
     "uglify": "uglifyjs -c -m --mangle-props reserved=[Freakylay] -o ../Freakylay.min.js Freakylay.js",
-    "build": "tsc && npm run uglify"
+    "build": "tsc && npm run uglify",
+    "build-watch": "tsc --watch",
+    "dev": "cd .. && live-server --no-browser"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
