@@ -1,4 +1,9 @@
-import * as WebData from "./web.js";
+// import * as WebData from "./web.js";
+/// <reference path="./web.ts" />
+
+namespace Freakylay.Connector.Converters.BSDP_2_1 {
+
+import WebData = Freakylay.Connector.Converters.Web
 
 //#region Converters
 export class Converter extends WebData.Converter
@@ -215,3 +220,5 @@ enum EEventTrigger
 }
 //#endregion
 //#endregion
+
+}

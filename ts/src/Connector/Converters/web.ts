@@ -1,3 +1,4 @@
+namespace Freakylay.Connector.Converters.Web {
 export abstract class Converter
 {
     public abstract ConvertMapData(data: object): MapData;
@@ -672,4 +673,6 @@ export class Parser
         if (!this.importedConverters.has(majorMinorString)) throw new Error("Converter not found.");
         return this.importedConverters.get(majorMinorString)!;
     }
+}
+
 }
